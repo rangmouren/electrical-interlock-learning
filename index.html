@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电气控制连锁技术 - 交互式学习平台</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">⚡</div>
+    <span class="logo-text">电气控制</span>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">学习路线</div>
+    <ul class="nav-list" id="navList"></ul>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">进度追踪</div>
+    <div class="progress-container">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <button class="btn-reset" onclick="resetProgress()">重置进度</button>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+  <header class="topbar">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <h1 id="pageTitle">电气控制连锁技术学习平台</h1>
+    <div class="topbar-actions">
+      <button class="btn-icon" onclick="toggleDarkMode()" title="切换主题">🌓</button>
+    </div>
+  </header>
+
+  <div class="content-area" id="contentArea">
+    <!-- Dynamic content loaded here -->
+  </div>
+</main>
+
+<script src="all.js"></script>
+</body>
+</html>
