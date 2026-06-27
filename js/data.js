@@ -51,7 +51,7 @@ const SVG = {
   <line x1="260" y1="55" x2="260" y2="72" class="sw" stroke-dasharray="3,3"/>
   <text x="320" y="80" class="sl" font-size="10" fill="#718096">线圈</text>
   <text x="50" y="40" class="sl" font-size="14" font-weight="bold" fill="#e53e3e">L</text>
-  <text x="528" y="40" class="sl" font-size="14" font-weight="bold">N</text>
+  <text x="528" y="40" class="sl" font-size="14" font-weight="bold" fill="#3182ce">N</text>
 </svg>`;
   },
 
@@ -135,9 +135,9 @@ const SVG = {
   <text x="485" y="183" class="sl" text-anchor="middle" font-size="10" fill="#718096">KM₂ 的常闭触点</text>
   <text x="485" y="198" class="sl" text-anchor="middle" font-size="10" fill="#718096">反之亦然</text>
   <text x="300" y="260" class="sl" text-anchor="middle" font-size="13" font-weight="bold" fill="#e53e3e">关键互锁原理</text>
-  <text x="300" y="285" class="sl" text-anchor="middle" font-size="12">KM₁ 得电 → KM₁常闭断开 → KM₂ 不能得电</text>
-  <text x="300" y="305" class="sl" text-anchor="middle" font-size="12">KM₂ 得电 → KM₂常闭断开 → KM₁ 不能得电</text>
-  <text x="300" y="330" class="sl" text-anchor="middle" font-size="12" fill="#38a169">✅ 防止两个接触器同时闭合导致短路</text>
+  <text x="300" y="285" class="sl" text-anchor="middle" font-size="12">KM₁ 得电 → KM₁的常闭触点断开 → KM₂ 回路被切断</text>
+  <text x="300" y="305" class="sl" text-anchor="middle" font-size="12">KM₂ 得电 → KM₂的常闭触点断开 → KM₁ 回路被切断</text>
+  <text x="300" y="330" class="sl" text-anchor="middle" font-size="12" fill="#38a169">✅ 电气互锁防止两个接触器同时闭合导致短路</text>
   <text x="40" y="40" class="sl" font-size="14" font-weight="bold" fill="#38a169">L</text><text x="590" y="40" class="sl" font-size="14" font-weight="bold">N</text>
 </svg>`;
   },
@@ -186,9 +186,9 @@ const SVG = {
   <text x="90" y="405" class="sl" font-size="12" fill="#38a169">✅ 自锁 — 每个回路的自保触点</text>
   <text x="350" y="405" class="sl" font-size="12" fill="#e53e3e">✅ 互锁 — KM₁↔KM₂ 常闭触点互锁</text>
   <text x="90" y="425" class="sl" font-size="12" fill="#d69e2e">✅ 过载保护 — FR热继电器</text>
-  <text x="350" y="425" class="sl" font-size="12" fill="#3182ce">✅ 时间连锁 — KT延时触点</text>
+  <text x="350" y="425" class="sl" font-size="12" fill="#3182ce">✅ 换向延时 — KT延时触点（防频繁切换）</text>
   <text x="90" y="445" class="sl" font-size="12" fill="#718096">✅ 欠压保护 — 线圈失电自动断开</text>
-  <text x="350" y="445" class="sl" font-size="12" fill="#805ad5">✅ 联锁指示 — KM₁→HL₁ 状态指示灯</text>
+  <text x="350" y="445" class="sl" font-size="12" fill="#805ad5">✅ 状态指示 — KM₁→HL₁ 运行指示</text>
 </svg>`;
   }
 };
@@ -199,14 +199,14 @@ const QUIZZES = {
   'self-lock-quiz': [
     { q: '自锁电路中，自锁触点与启动按钮的连接方式是？', o: ['串联','并联','混联','不连接'], a: 1, e: '自锁触点（KM的辅助常开触点）与启动按钮（SB1）并联。KM得电后自锁触点闭合，取代按钮维持回路。' },
     { q: '以下哪个不是自锁电路的作用？', o: ['保持状态','防止两台设备同时运行','欠压保护','简化操作'], a: 1, e: '"防止两台设备同时运行"是互锁的功能。自锁的作用是保持状态、欠压保护和简化操作。' },
-    { q: '自锁电路中停止按钮应该用什么类型的触点？', o: ['常开 (NO)','常闭 (NC)','都可以','不需要'], a: 1, e: '停止按钮必须用常闭（NC）触点。按下时触点断开，切断整个回路。' },
+    { q: '自锁电路中停止按钮应该用什么类型的触点？', o: ['常开 (NO)','常闭 (NC)','都可以','不需要'], a: 1, e: '停止按钮必须用常闭（NC）触点。不按时触点闭合（回路可通），按下时触点断开（切断回路）。如果错用常开（NO）按钮，则按下时回路才通，松手就断，无法正常停止。' },
     { q: '欠压保护的含义是什么？', o: ['电压过高断开','断电恢复后不会自启动','防止触电','保护过载'], a: 1, e: '断电时KM失电、自锁断开。电源恢复后不会自行吸合，需重新按启动按钮。' },
   ],
   'mutual-lock-quiz': [
     { q: '互锁触点应串联在什么位置？', o: ['启动按钮前','对方线圈回路中','主电路中','自己线圈回路中'], a: 1, e: '互锁常闭触点串联在对方的线圈回路中，本方得电后NC触点断开，切断对方回路。' },
     { q: '互锁使用什么类型的触点？', o: ['常开 (NO)','常闭 (NC)','主触点','线圈'], a: 1, e: '互锁使用常闭（NC）触点，无动作时闭合，得电后断开来封锁对方。' },
     { q: '没有互锁的正反转电路会怎样？', o: ['电机不转','同时接通→短路','速度变慢','没影响'], a: 1, e: '两个接触器同时闭合会导致电源两相短路，烧毁设备！' },
-    { q: '双重互锁是指？', o: ['电气+软件互锁','电气互锁+机械互锁','三个接触器','两个PLC程序'], a: 1, e: '电气互锁（NC触点串联）+ 机械互锁（接触器间机械联动），最高安全等级。' },
+    { q: '双重互锁是指？', o: ['电气+软件互锁','电气互锁+机械互锁','三个接触器','两个PLC程序'], a: 1, e: '双重互锁 = 电气互锁（触点互锁）+ 机械互锁（接触器间加装机械联动机构），两者同时使用可达到最高安全等级。' },
   ],
   'complex-quiz': [
     { q: '复合连锁的核心特征？', o: ['只用一种连锁','同时运用多种连锁和保护','不需要自锁','只用时间继电器'], a: 1, e: '复合连锁是自锁、互锁、过载保护、限位保护等多种机制的综合运用。' },

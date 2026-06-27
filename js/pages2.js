@@ -31,7 +31,7 @@ function renderMutualLock(el) {
         <tr><td>机械互锁</td><td>接触器间机械联动机构</td><td>触点粘连也物理阻挡</td><td>结构复杂、成本高</td></tr>
         <tr><td style="font-weight:700;color:var(--success)">双重互锁</td><td>电气 + 机械同时使用</td><td>安全性最高</td><td>成本最高</td></tr>
       </table>
-      <div class="info-box danger"><strong>⚠️ 为什么互锁如此重要？</strong>正反转接触器同时闭合 → 导致<strong>L1-L2两相短路</strong> → 巨大短路电流 → 烧毁设备甚至引发火灾！</div>
+      <div class="info-box danger"><strong>⚠️ 为什么互锁如此重要？</strong>正反转接触器同时闭合 → 导致<strong>电源相间短路</strong>（L1与L2） → 巨大短路电流 → 烧毁设备甚至引发火灾！</div>
       <div class="info-box success"><strong>✅ 自锁 + 互锁 = 完整控制</strong> — 自锁维持运行，互锁防止冲突，两者缺一不可。</div>
     </div>
     <div class="btn-nav"><button class="btn btn-outline" onclick="App.navigate('self-lock-quiz')">← 自锁测验</button><button class="btn btn-primary btn-next" onclick="App.navigate('mutual-lock-practice')">🧪 互锁实验 →</button></div>`;
@@ -62,10 +62,10 @@ function renderMutualLockPractice(el) {
       <div id="${id}-note" style="text-align:center;font-size:14px;color:var(--text-secondary);margin-bottom:16px">点击 KM₁ 或 KM₂ 按钮开始实验</div>
       <div style="text-align:center;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <button class="btn btn-outline" onclick="MLP.reset()">⏹ 全部复位</button>
-        <button class="btn btn-outline" onclick="MLP.force()" style="border-color:var(--danger);color:var(--danger)">💥 强制同时启动（危险！）</button>
+        <button class="btn btn-outline" onclick="MLP.force()" style="border-color:var(--danger);color:var(--danger)">💥 模拟互锁失效（💥短路危险！）</button>
       </div>
       <div class="info-box concept" style="margin-top:20px"><strong>🧪 实验步骤：</strong>
-        <ol><li>点击 <strong>KM₁</strong> 启动正转 → 观察KM₂按钮变灰不可用</li><li>点击 <strong>复位</strong> → 点击 <strong>KM₂</strong> 启动反转 → 观察KM₁被封锁</li><li>点击 <strong>「强制同时启动」</strong> → 观察短路状态（现实中这会造成灾难！）</li></ol>
+        <ol><li>点击 <strong>KM₁</strong> 启动正转 → 观察KM₂按钮变灰不可用</li><li>点击 <strong>复位</strong> → 点击 <strong>KM₂</strong> 启动反转 → 观察KM₁被封锁</li><li>点击 <strong>「强制同时启动」</strong> → 观察短路后果——现实中如果互锁失效（如触点粘连同时误操作），就会发生这种严重的短路事故</li></ol>
       </div>
     </div>
     <div class="btn-nav"><button class="btn btn-outline" onclick="App.navigate('mutual-lock')">← 互锁理论</button><button class="btn btn-primary btn-next" onclick="App.navigate('mutual-lock-quiz')">📝 小测验 →</button></div>`;
@@ -218,8 +218,8 @@ function renderApplications(el) {
     <div class="section-card animate-in"><h2>🏭 实际工程应用案例</h2><p>连锁控制在工业自动化中无处不在：</p></div>
     <div class="section-card animate-in">
       <h2 style="font-size:20px">📦 案例1：传送带系统</h2>
-      <div class="info-box concept"><strong>场景：</strong>三条传送带依次输送物料，从最后一条向前反向停止。</div>
-      <ul><li>每条传送带<strong>自锁</strong>维持运行</li><li><strong>顺序连锁</strong>：M3启动→M2才可→M1才可（前级KM触点串联在后级回路）</li><li><strong>保护连锁</strong>：任何一条过载，上游全部停止防堆积</li></ul>
+      <div class="info-box concept"><strong>场景：</strong>三条传送带依次输送物料，从最下游（出料端）的传送带先启动，依次向上游启动；停止时从最上游开始停。</div>
+      <ul><li>每条传送带<strong>自锁</strong>维持运行</li><li><strong>顺序连锁</strong>：M3（最下游）启动→M2才可启动→M1（最上游）才可启动（后级KM触点串联在前级启动回路中）</li><li><strong>保护连锁</strong>：任何一条过载则其上游全部停止，防止物料在故障处堆积</li></ul>
     </div>
     <div class="section-card animate-in">
       <h2 style="font-size:20px">🏗️ 案例2：电梯控制</h2>
